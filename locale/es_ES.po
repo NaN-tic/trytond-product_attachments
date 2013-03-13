@@ -1,0 +1,11 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:product.product,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "view:product.product:"
+msgid "Attachments"
+msgstr "Adjuntos"
