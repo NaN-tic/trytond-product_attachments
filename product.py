@@ -5,11 +5,11 @@
 from trytond.model import fields
 from trytond.pool import PoolMeta
 
-__all__ = ['Product']
+__all__ = ['Template']
 __metaclass__ = PoolMeta
 
 
-class Product:
-    'Product'
-    __name__ = 'product.product'
+class Template:
+    'Template'
+    __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments')
