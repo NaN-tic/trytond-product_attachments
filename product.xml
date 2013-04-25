@@ -10,9 +10,8 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="arch" type="xml">
                 <![CDATA[
                 <data>
-                    <xpath
-                        expr="/form/notebook"
-                        position="inside">
+                    <xpath expr="/form/notebook/page[@id=&quot;general&quot;]"
+                        position="after">
                         <page string="Attachments" id="attachments">
                             <field name="attachments" colspan="6"/>
                         </page>
