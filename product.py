@@ -13,3 +13,12 @@ class Template:
     'Template'
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments')
+
+    @classmethod
+    def delete(cls, templates):
+        pool = Pool()
+        Attachment = pool.get('ir.attachment')
+
+        attachments = [a for t in templates for a in t.attachments]
+        Attachment.delete(attachments)
+        super(Template, cls).delete(templates)
