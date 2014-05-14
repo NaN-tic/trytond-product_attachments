@@ -6,6 +6,10 @@ msgctxt "field:product.product,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
+msgctxt "field:product.template,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
 msgctxt "view:product.product:"
 msgid "Attachments"
 msgstr "Adjuntos"
