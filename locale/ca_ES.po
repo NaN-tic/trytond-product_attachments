@@ -2,14 +2,14 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "field:product.product,attachments:"
-msgid "Attachments"
-msgstr "Adjunts"
-
 msgctxt "field:product.template,attachments:"
 msgid "Attachments"
 msgstr "Adjunts"
 
 msgctxt "view:product.product:"
+msgid "Attachments"
+msgstr "Adjunts"
+
+msgctxt "view:product.template:"
 msgid "Attachments"
 msgstr "Adjunts"
