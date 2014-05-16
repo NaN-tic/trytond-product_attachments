@@ -3,10 +3,11 @@
 #the full copyright notices and license terms.
 
 from trytond.pool import Pool
+from .attachment import *
 from .product import *
-
 
 def register():
     Pool.register(
+        Attachment,
         Template,
         module='product_attachments', type_='model')
