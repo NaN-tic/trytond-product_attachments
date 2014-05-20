@@ -42,7 +42,11 @@ class Attachment:
         return super(Attachment, cls).create(vlist)
 
     @classmethod
-    def write(cls, attachments, values):
-        if values.get('name'):
-            values['name'] = slugify(values['name'])
-        return super(Attachment, cls).write(attachments, values)
+    def write(cls, *args):
+        actions = iter(args)
+        args = []
+        for attachments, values in zip(actions, actions):
+            if values.get('name'):
+                values['name'] = slugify(values['name'])
+            args.extend((attachments, values))
+        return super(Attachment, cls).write(*args)
