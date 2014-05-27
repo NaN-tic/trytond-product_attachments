@@ -3,7 +3,7 @@
 #the full copyright notices and license terms.
 
 from trytond.model import fields
-from trytond.pool import PoolMeta
+from trytond.pool import Pool, PoolMeta
 
 __all__ = ['Template']
 __metaclass__ = PoolMeta
