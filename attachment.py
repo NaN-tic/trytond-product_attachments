@@ -2,6 +2,7 @@
 #The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 from trytond.pool import PoolMeta
+from mimetypes import guess_type
 
 import logging
 
@@ -36,9 +37,21 @@ class Attachment:
     __name__ = 'ir.attachment'
 
     @classmethod
+    def __setup__(cls):
+        super(Attachment, cls).__setup__()
+        cls._error_messages.update({
+                'not_known_mimetype': ('Filename "%s" not known mime type '
+                    '(add extension filename).'),
+                })
+
+    @classmethod
     def create(cls, vlist):
         for vals in vlist:
-            vals['name'] = slugify(vals['name'])
+            filename = slugify(vals['name'])
+            if not guess_type(filename)[0]:
+                cls.raise_user_error('not_known_mimetype',
+                    (filename,))
+            vals['name'] = filename
         return super(Attachment, cls).create(vlist)
 
     @classmethod
@@ -47,6 +60,10 @@ class Attachment:
         args = []
         for attachments, values in zip(actions, actions):
             if values.get('name'):
-                values['name'] = slugify(values['name'])
+                filename = slugify(values['name'])
+                if not guess_type(filename)[0]:
+                    cls.raise_user_error('not_known_mimetype',
+                        (filename,))
+                values['name'] = filename
             args.extend((attachments, values))
         return super(Attachment, cls).write(*args)
