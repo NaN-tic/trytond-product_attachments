@@ -2,6 +2,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:ir.attachment:"
+msgid "Filename \"%s\" not known mime type (add extension filename)."
+msgstr "El fitxer \"%s\" no es coneix el seu tipus (afegeix una extensió)."
+
 msgctxt "field:product.template,attachments:"
 msgid "Attachments"
 msgstr "Adjunts"
