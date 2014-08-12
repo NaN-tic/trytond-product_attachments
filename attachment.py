@@ -45,8 +45,17 @@ class Attachment:
                 })
 
     @classmethod
+    def _get_models_check_mime_type(cls):
+        '''Return list of Model names to check the mime type and slugify the
+         names of their attachments'''
+        return ['product.template']
+
+    @classmethod
     def create(cls, vlist):
         for vals in vlist:
+            model_name, record_id = vals['resource'].split(',', 1)
+            if model_name not in cls._get_models_check_mime_type():
+                continue
             filename = slugify(vals['name'])
             if not guess_type(filename)[0]:
                 cls.raise_user_error('not_known_mimetype',
@@ -58,8 +67,13 @@ class Attachment:
     def write(cls, *args):
         actions = iter(args)
         args = []
+        to_slugify = True
         for attachments, values in zip(actions, actions):
-            if values.get('name'):
+            for attachment in attachments:
+                if (attachment.resource.__name__ not in
+                        cls._get_models_check_mime_type()):
+                    to_slugify = False
+            if to_slugify and values.get('name'):
                 filename = slugify(values['name'])
                 if not guess_type(filename)[0]:
                     cls.raise_user_error('not_known_mimetype',
