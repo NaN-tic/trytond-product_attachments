@@ -40,8 +40,8 @@ class Attachment:
     def __setup__(cls):
         super(Attachment, cls).__setup__()
         cls._error_messages.update({
-                'not_known_mimetype': ('Filename "%s" not known mime type '
-                    '(add extension filename).'),
+                'not_known_mimetype': ('The mime type of filename "%s" is not '
+                    'known. Add a valid extension to the filename.'),
                 })
 
     @classmethod
