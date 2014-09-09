@@ -10,7 +10,6 @@ __metaclass__ = PoolMeta
 
 
 class Template:
-    'Template'
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource', 'Attachments')
 
