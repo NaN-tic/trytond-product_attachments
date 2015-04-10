@@ -10,6 +10,10 @@ msgstr ""
 "El tipo mime del nombre del archivo \"% s\" es desconocido. Agregue una "
 "extensión válida al nombre del archivo."
 
+msgctxt "field:product.product,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
 msgctxt "field:product.template,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"

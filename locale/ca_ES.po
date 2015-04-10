@@ -10,6 +10,10 @@ msgstr ""
 "El tipus mime del nom del fitxer \"% s\" és desconegut. Afegiu una extensió "
 "vàlida al nom del fitxer."
 
+msgctxt "field:product.product,attachments:"
+msgid "Attachments"
+msgstr "Adjunts"
+
 msgctxt "field:product.template,attachments:"
 msgid "Attachments"
 msgstr "Adjunts"
