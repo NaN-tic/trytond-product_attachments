@@ -10,4 +10,5 @@ def register():
     Pool.register(
         Attachment,
         Template,
+        Product,
         module='product_attachments', type_='model')
