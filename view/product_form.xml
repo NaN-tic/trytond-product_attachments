@@ -4,7 +4,6 @@ copyright notices and license terms. -->
 <data>
     <xpath expr="/form/field[@name='description']"
             position="after">
-        <separator name="attachments" colspan="6"/>
         <field name="attachments" colspan="6"/>
     </xpath>
 </data>
