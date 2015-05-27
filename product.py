@@ -32,10 +32,10 @@ class Product:
             }, depends=['attach_invisible'])
 
     @classmethod
-    def delete(cls, templates):
+    def delete(cls, products):
         pool = Pool()
         Attachment = pool.get('ir.attachment')
 
-        attachments = [a for t in templates for a in t.attachments]
+        attachments = [a for p in products for a in p.attachments]
         Attachment.delete(attachments)
-        super(Template, cls).delete(templates)
+        super(Product, cls).delete(products)
