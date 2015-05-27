@@ -29,7 +29,7 @@ class Product:
         states={
             'invisible': Eval('_parent_template', {}).get('unique_variant',
                 False)
-            }, depends=['attach_invisible'])
+            })
 
     @classmethod
     def delete(cls, products):
