@@ -3,11 +3,14 @@
 # the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval, Bool
+from trytond.pyson import Eval
+from trytond.transaction import Transaction
+from trytond.config import config
+import magic
 
 __all__ = ['Template', 'Product']
 __metaclass__ = PoolMeta
-
+_IMAGE_TYPES = ['image/jpeg', 'image/png',  'image/gif']
 STATES = {
     'readonly': ~Eval('active', True),
     }
@@ -18,6 +21,8 @@ class Template:
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
+    default_image = fields.Function(fields.Dict(None, 'Default Image'),
+        'get_default_image')
 
     @classmethod
     def delete(cls, templates):
@@ -28,11 +33,37 @@ class Template:
         Attachment.delete(attachments)
         super(Template, cls).delete(templates)
 
+    def get_default_image(self, name):
+        '''Return default image'''
+        if not self.attachments:
+            return
+
+        path = config.get('database', 'path')
+        db_name = Transaction().cursor.dbname
+
+        for attach in self.attachments:
+            digest = attach.digest
+            image = '%s/%s/%s/%s/%s' % (
+                path,
+                db_name,
+                digest[:2],
+                digest[2:4:],
+                digest,
+                )
+
+            mimetype = magic.from_file(image, mime=True)
+            if not mimetype in _IMAGE_TYPES:
+                continue
+            return digest
+        return
+
 
 class Product:
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
+    default_image = fields.Function(fields.Dict(None, 'Default Image'),
+        'get_default_image')
 
     @classmethod
     def delete(cls, products):
@@ -42,3 +73,27 @@ class Product:
         attachments = [a for p in products for a in p.attachments]
         Attachment.delete(attachments)
         super(Product, cls).delete(products)
+
+    def get_default_image(self, name):
+        '''Return default image'''
+        if not self.attachments:
+            return self.template.get_default_image(name)
+
+        path = config.get('database', 'path')
+        db_name = Transaction().cursor.dbname
+
+        for attach in self.attachments:
+            digest = attach.digest
+            image = '%s/%s/%s/%s/%s' % (
+                path,
+                db_name,
+                digest[:2],
+                digest[2:4:],
+                digest,
+                )
+
+            mimetype = magic.from_file(image, mime=True)
+            if not mimetype in _IMAGE_TYPES:
+                continue
+            return digest
+        return
