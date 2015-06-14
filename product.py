@@ -21,8 +21,8 @@ class Template:
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
-    default_image = fields.Function(fields.Dict(None, 'Default Image'),
-        'get_default_image')
+    image = fields.Function(fields.Char('Image'),
+        'get_image')
 
     @classmethod
     def delete(cls, templates):
@@ -33,8 +33,8 @@ class Template:
         Attachment.delete(attachments)
         super(Template, cls).delete(templates)
 
-    def get_default_image(self, name):
-        '''Return default image'''
+    def get_image(self, name):
+        '''Return a digest product image'''
         if not self.attachments:
             return
 
@@ -52,9 +52,8 @@ class Template:
                 )
 
             mimetype = magic.from_file(image, mime=True)
-            if not mimetype in _IMAGE_TYPES:
-                continue
-            return digest
+            if mimetype in _IMAGE_TYPES:
+                return digest
         return
 
 
@@ -62,8 +61,8 @@ class Product:
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
-    default_image = fields.Function(fields.Dict(None, 'Default Image'),
-        'get_default_image')
+    image = fields.Function(fields.Char('Image'),
+        'get_image')
 
     @classmethod
     def delete(cls, products):
@@ -74,8 +73,8 @@ class Product:
         Attachment.delete(attachments)
         super(Product, cls).delete(products)
 
-    def get_default_image(self, name):
-        '''Return default image'''
+    def get_image(self, name):
+        '''Return a digest product image'''
         if not self.attachments:
             return self.template.get_default_image(name)
 
@@ -93,7 +92,6 @@ class Product:
                 )
 
             mimetype = magic.from_file(image, mime=True)
-            if not mimetype in _IMAGE_TYPES:
-                continue
-            return digest
+            if mimetype in _IMAGE_TYPES:
+                return digest
         return
