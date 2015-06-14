@@ -10,11 +10,31 @@ msgstr ""
 "El tipo mime del nombre del archivo \"% s\" es desconocido. Agregue una "
 "extensión válida al nombre del archivo."
 
+msgctxt "field:ir.attachment,active:"
+msgid "Active"
+msgstr "Activo"
+
 msgctxt "field:product.product,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
+msgctxt "field:product.product,default_image:"
+msgid "Image"
+msgstr "Imagen"
+
 msgctxt "field:product.template,attachments:"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "field:product.template,default_image:"
+msgid "Image"
+msgstr "Imagen"
+
+msgctxt "model:ir.action,name:act_attachment_form"
+msgid "Attachments"
+msgstr "Adjuntos"
+
+msgctxt "model:ir.ui.menu,name:menu_attachment_form"
 msgid "Attachments"
 msgstr "Adjuntos"
 

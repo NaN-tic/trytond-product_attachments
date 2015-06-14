@@ -10,11 +10,31 @@ msgstr ""
 "El tipus mime del nom del fitxer \"% s\" és desconegut. Afegiu una extensió "
 "vàlida al nom del fitxer."
 
+msgctxt "field:ir.attachment,active:"
+msgid "Active"
+msgstr "Actiu"
+
 msgctxt "field:product.product,attachments:"
 msgid "Attachments"
 msgstr "Adjunts"
 
+msgctxt "field:product.product,default_image:"
+msgid "Image"
+msgstr "Imatge"
+
 msgctxt "field:product.template,attachments:"
+msgid "Attachments"
+msgstr "Adjunts"
+
+msgctxt "field:product.template,default_image:"
+msgid "Image"
+msgstr "Imatge"
+
+msgctxt "model:ir.action,name:act_attachment_form"
+msgid "Attachments"
+msgstr "Adjunts"
+
+msgctxt "model:ir.ui.menu,name:menu_attachment_form"
 msgid "Attachments"
 msgstr "Adjunts"
 
