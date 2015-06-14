@@ -2,6 +2,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import PoolMeta
+from trytond.model import fields
 from mimetypes import guess_type
 
 import logging
@@ -35,6 +36,7 @@ def slugify(value):
 
 class Attachment:
     __name__ = 'ir.attachment'
+    active = fields.Boolean('Active', select=True)
 
     @classmethod
     def __setup__(cls):
@@ -43,6 +45,10 @@ class Attachment:
                 'not_known_mimetype': ('The mime type of filename "%s" is not '
                     'known. Add a valid extension to the filename.'),
                 })
+
+    @staticmethod
+    def default_active():
+        return True
 
     @classmethod
     def _get_models_check_mime_type(cls):
