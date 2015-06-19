@@ -76,7 +76,7 @@ class Product:
     def get_image(self, name):
         '''Return a digest product image'''
         if not self.attachments:
-            return self.template.get_default_image(name)
+            return self.template.get_image(name)
 
         path = config.get('database', 'path')
         db_name = Transaction().cursor.dbname
