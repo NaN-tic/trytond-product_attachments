@@ -10,15 +10,31 @@ msgstr ""
 "El tipo mime del nombre del archivo \"% s\" es desconocido. Agregue una "
 "extensión válida al nombre del archivo."
 
+msgctxt "error:product.template:"
+msgid "\"%(file_name)s\" file mime is not an image (jpg, png or gif)"
+msgstr "El tipo de fichero \"%(file_name)s\" no es una imagen (jpg, png o gif)"
+
+msgctxt "error:product.template:"
+msgid "Not know file mime \"%(file_name)s\""
+msgstr "No se conoze el tipo de fichero \"%(file_name)s\""
+
+msgctxt "error:product.template:"
+msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
+msgstr "El tamaño de la miniatura \"%(file_name)s\" es más grande que \"%(size)s\"Kb"
+
 msgctxt "field:ir.attachment,active:"
 msgid "Active"
 msgstr "Activo"
+
+msgctxt "field:product.configuration,thumb_size:"
+msgid "Thumb Size"
+msgstr "Miniatura tamaño"
 
 msgctxt "field:product.product,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
-msgctxt "field:product.product,default_image:"
+msgctxt "field:product.product,image:"
 msgid "Image"
 msgstr "Imagen"
 
@@ -26,15 +42,39 @@ msgctxt "field:product.template,attachments:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
-msgctxt "field:product.template,default_image:"
+msgctxt "field:product.template,image:"
 msgid "Image"
 msgstr "Imagen"
 
-msgctxt "model:ir.action,name:act_attachment_form"
+msgctxt "field:product.template,thumb:"
+msgid "Thumb"
+msgstr "Miniatura"
+
+msgctxt "field:product.template,thumb_filename:"
+msgid "File Name"
+msgstr "Nombre fichero"
+
+msgctxt "field:product.template,thumb_path:"
+msgid "Thumb Path"
+msgstr "Ruta miniatura"
+
+msgctxt "help:product.configuration,thumb_size:"
+msgid "Thumbnail Product Image Size (width and height)"
+msgstr "Tamaño imagen miniatura (ancho y alto)"
+
+msgctxt "help:product.template,thumb:"
+msgid "Thumbnail Product Image"
+msgstr "Imagen miniatura producto"
+
+msgctxt "help:product.template,thumb_filename:"
+msgid "Thumbnail Product File Name"
+msgstr "Nombre fichero miniatura producto"
+
+msgctxt "model:ir.action,name:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
-msgctxt "model:ir.ui.menu,name:menu_attachment_form"
+msgctxt "model:ir.ui.menu,name:"
 msgid "Attachments"
 msgstr "Adjuntos"
 
