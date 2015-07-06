@@ -1,10 +1,9 @@
 # This file is part product_attachments module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-from trytond.pool import PoolMeta
+from trytond.pool import Pool, PoolMeta
 from trytond.model import fields
 from mimetypes import guess_type
-
 import logging
 
 try:
@@ -67,6 +66,22 @@ class Attachment:
                 cls.raise_user_error('not_known_mimetype',
                     (filename,))
             vals['name'] = filename
+
+            if 'resource' and 'data' in vals:
+                resource = vals['resource']
+                data = vals['data']
+
+                model_name, id = resource.split(',')
+                Model = Pool().get(model_name)
+                if hasattr(Model, 'thumb'):
+                    record = Model(int(id))
+                    if not record.thumb:
+                        # save each record because you could create multiple
+                        # attachments related with differents models
+                        record.thumb = data
+                        record.thumb_filename = vals.get('name', 'unknown')
+                        record.save()
+
         return super(Attachment, cls).create(vlist)
 
     @classmethod
