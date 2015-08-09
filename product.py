@@ -62,6 +62,8 @@ class Template:
 
         for attach in self.attachments:
             digest = attach.digest
+            if not digest:
+                continue
             image = '%s/%s/%s/%s/%s' % (
                 path,
                 db_name,
@@ -125,9 +127,8 @@ class Template:
                         'file_name': file_name,
                         })
             if file_mime not in _IMAGE_TYPES:
-                cls.raise_user_error('not_file_mime_image', {
-                        'file_name': file_name,
-                        })
+                # is not image, not create a thumb
+                continue
 
             _, ext = file_mime.split('/')
             digest = '%s.%s' % (hashlib.md5(value).hexdigest(), ext)

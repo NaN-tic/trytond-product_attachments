@@ -58,6 +58,8 @@ class Attachment:
     @classmethod
     def create(cls, vlist):
         for vals in vlist:
+            if vals['type'] == 'link':
+                continue
             model_name, record_id = vals['resource'].split(',', 1)
             if model_name not in cls._get_models_check_mime_type():
                 continue
@@ -92,7 +94,8 @@ class Attachment:
         for attachments, values in zip(actions, actions):
             for attachment in attachments:
                 if (attachment.resource.__name__ not in
-                        cls._get_models_check_mime_type()):
+                        cls._get_models_check_mime_type()
+                        or attachment.type == 'link'):
                     to_slugify = False
             if to_slugify and values.get('name'):
                 filename = slugify(values['name'])
