@@ -9,8 +9,8 @@ import logging
 try:
     import slug
 except ImportError:
-    logging.getLogger('product attachments').error(
-            'Unable to import slug. Install slug package.')
+    logger = logging.getLogger(__name__)
+    logger.error('Unable to import slug. Install slug package.')
 
 __all__ = ['Attachment']
 __metaclass__ = PoolMeta
