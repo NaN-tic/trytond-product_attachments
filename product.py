@@ -89,7 +89,7 @@ class Template:
         value = None
         try:
             with open(filename, 'rb') as file_p:
-                value = buffer(file_p.read())
+                value = fields.Binary.cast(file_p.read())
         except IOError:
             pass
         return value
