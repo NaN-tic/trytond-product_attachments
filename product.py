@@ -71,7 +71,8 @@ class Template:
                 digest[2:4:],
                 digest,
                 )
-
+            if not os.path.isfile(image):
+                return
             mimetype = magic.from_file(image, mime=True)
             if mimetype in _IMAGE_TYPES:
                 return digest
