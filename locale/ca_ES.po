@@ -70,14 +70,6 @@ msgctxt "help:product.template,thumb_filename:"
 msgid "Thumbnail Product File Name"
 msgstr "Nom fitxer miniatura producte"
 
-msgctxt "model:ir.action,name:"
-msgid "Attachments"
-msgstr "Adjunts"
-
-msgctxt "model:ir.ui.menu,name:"
-msgid "Attachments"
-msgstr "Adjunts"
-
 msgctxt "view:product.template:"
 msgid "Attachments"
 msgstr "Adjunts"
