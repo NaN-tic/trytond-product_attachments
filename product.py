@@ -58,7 +58,7 @@ class Template:
             return
 
         path = config.get('database', 'path')
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
 
         for attach in self.attachments:
             digest = attach.digest
@@ -80,7 +80,7 @@ class Template:
 
 
     def get_thumb(self, name):
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
         filename = self.thumb_filename
         if not filename:
             return None
@@ -115,7 +115,7 @@ class Template:
         product_config = Config(1)
         size = product_config.thumb_size or 150
 
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
         esaledir = os.path.join(
             config.get('database', 'path'), db_name, 'esale', 'thumb')
 
@@ -200,7 +200,7 @@ class Product:
             return self.template.get_image(name)
 
         path = config.get('database', 'path')
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
 
         for attach in self.attachments:
             digest = attach.digest
