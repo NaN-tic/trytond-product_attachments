@@ -13,7 +13,6 @@ from trytond.transaction import Transaction
 from trytond.config import config
 
 __all__ = ['Template', 'Product']
-__metaclass__ = PoolMeta
 _IMAGE_TYPES = ['image/jpeg', 'image/png',  'image/gif']
 STATES = {
     'readonly': ~Eval('active', True),
@@ -22,6 +21,7 @@ DEPENDS = ['active']
 
 
 class Template:
+    __metaclass__ = PoolMeta
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
@@ -179,6 +179,7 @@ class Template:
 
 
 class Product:
+    __metaclass__ = PoolMeta
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)

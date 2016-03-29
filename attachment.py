@@ -13,7 +13,6 @@ except ImportError:
     logger.error('Unable to import slug. Install slug package.')
 
 __all__ = ['Attachment']
-__metaclass__ = PoolMeta
 
 def slugify(value):
     """Convert attachment name to slug: az09 and replace spaces by -"""
@@ -34,6 +33,7 @@ def slugify(value):
 
 
 class Attachment:
+    __metaclass__ = PoolMeta
     __name__ = 'ir.attachment'
     active = fields.Boolean('Active', select=True)
 

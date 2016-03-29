@@ -6,10 +6,10 @@ from trytond.pool import PoolMeta
 
 
 __all__ = ['Configuration']
-__metaclass__ = PoolMeta
 
 
 class Configuration:
+    __metaclass__ = PoolMeta
     __name__ = 'product.configuration'
     thumb_size = fields.Integer('Thumb Size',
         help='Thumbnail Product Image Size (width and height)')
