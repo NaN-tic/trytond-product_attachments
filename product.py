@@ -120,7 +120,7 @@ class Template:
             config.get('database', 'path'), db_name, 'esale', 'thumb')
 
         for template in templates:
-            file_name = template['thumb_filename']
+            file_name = template.thumb_filename or 'unknown'
 
             file_mime, _ = guess_type(file_name)
             if not file_mime:
