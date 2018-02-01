@@ -2,14 +2,15 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.pool import Pool
-from .attachment import *
-from .configuration import *
-from .product import *
+from . import attachment
+from . import configuration
+from . import product
+
 
 def register():
     Pool.register(
-        Configuration,
-        Attachment,
-        Template,
-        Product,
+        configuration.Configuration,
+        attachment.Attachment,
+        product.Template,
+        product.Product,
         module='product_attachments', type_='model')

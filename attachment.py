@@ -1,18 +1,14 @@
 # This file is part product_attachments module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from mimetypes import guess_type
+
+import slug
 from trytond.pool import Pool, PoolMeta
 from trytond.model import fields
-from mimetypes import guess_type
-import logging
-
-try:
-    import slug
-except ImportError:
-    logger = logging.getLogger(__name__)
-    logger.error('Unable to import slug. Install slug package.')
 
 __all__ = ['Attachment']
+
 
 def slugify(value):
     """Convert attachment name to slug: az09 and replace spaces by -"""
@@ -69,7 +65,7 @@ class Attachment:
                     (filename,))
             vals['name'] = filename
 
-            if 'resource' and 'data' in vals:
+            if 'resource' in vals and 'data' in vals:
                 resource = vals['resource']
                 data = vals['data']
 
@@ -81,7 +77,7 @@ class Attachment:
                         # save each record because you could create multiple
                         # attachments related with differents models
                         record.thumb = data
-                        record.thumb_filename = vals.get('name', 'unknown')
+                        record.thumb_filename = filename
                         record.save()
 
         return super(Attachment, cls).create(vlist)

@@ -4,8 +4,9 @@
 import os
 import hashlib
 import magic
-from PIL import Image
 from mimetypes import guess_type
+
+from PIL import Image
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
@@ -13,7 +14,7 @@ from trytond.transaction import Transaction
 from trytond.config import config
 
 __all__ = ['Template', 'Product']
-_IMAGE_TYPES = ['image/jpeg', 'image/png',  'image/gif']
+_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 STATES = {
     'readonly': ~Eval('active', True),
     }
@@ -38,9 +39,11 @@ class Template:
         super(Template, cls).__setup__()
         cls._error_messages.update({
             'not_file_mime': ('Not know file mime "%(file_name)s"'),
-            'not_file_mime_image': ('"%(file_name)s" file mime is not an image ' \
-                '(jpg, png or gif)'),
-            'image_size': ('Thumb "%(file_name)s" size is larger than "%(size)s"Kb'),
+            'not_file_mime_image': (
+                    '"%(file_name)s" file mime is not an image '
+                    '(jpg, png or gif)'),
+            'image_size': (
+                    'Thumb "%(file_name)s" size is larger than "%(size)s"Kb'),
         })
 
     @classmethod
@@ -77,7 +80,6 @@ class Template:
             if mimetype in _IMAGE_TYPES:
                 return digest
         return
-
 
     def get_thumb(self, name):
         db_name = Transaction().database.name
@@ -157,17 +159,17 @@ class Template:
 
             width, height = im.size
             if width > height:
-               delta = width - height
-               left = int(delta/2)
-               upper = 0
-               right = height + left
-               lower = height
+                delta = width - height
+                left = int(delta / 2)
+                upper = 0
+                right = height + left
+                lower = height
             else:
-               delta = height - width
-               left = 0
-               upper = int(delta/2)
-               right = width
-               lower = width + upper
+                delta = height - width
+                left = 0
+                upper = int(delta / 2)
+                right = width
+                lower = width + upper
 
             im = im.crop((left, upper, right, lower))
             im.thumbnail(thumb_size, Image.ANTIALIAS)
