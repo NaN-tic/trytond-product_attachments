@@ -21,8 +21,7 @@ STATES = {
 DEPENDS = ['active']
 
 
-class Template:
-    __metaclass__ = PoolMeta
+class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
@@ -141,8 +140,8 @@ class Template:
             filename = os.path.join(directory, digest)
 
             if not os.path.isdir(directory):
-                os.makedirs(directory, 0775)
-            os.umask(0022)
+                os.makedirs(directory, 0o775)
+            os.umask(0o022)
             with open(filename, 'wb') as file_p:
                 file_p.write(value)
 
@@ -180,8 +179,7 @@ class Template:
                 })
 
 
-class Product:
-    __metaclass__ = PoolMeta
+class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)

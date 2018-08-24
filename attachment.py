@@ -15,11 +15,7 @@ def slugify(value):
     fname = value.lower().split('.')
     fn = fname[0]
     try:
-        if isinstance(fn, unicode):
-            name = slug.slug(fn)
-        else:
-            name = slug.slug(unicode(fn, 'UTF-8'))
-
+        name = slug.slug(fn)
         if len(fname) > 1:
             return '%s.%s' % (name, fname[1])
         else:
@@ -28,8 +24,7 @@ def slugify(value):
         return value
 
 
-class Attachment:
-    __metaclass__ = PoolMeta
+class Attachment(metaclass=PoolMeta):
     __name__ = 'ir.attachment'
     active = fields.Boolean('Active', select=True)
 
