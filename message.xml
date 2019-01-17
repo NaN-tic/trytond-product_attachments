@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data group="1">
+      <record model="ir.message" id="not_known_mimetype">
+          <field name="text">The mime type of filename "%(filename)s" is not known. Add a valid extension to the filename.</field>
+      </record>
+      <record model="ir.message" id="not_file_mime">
+          <field name="text">Not know file mime "%(file_name)s"</field>
+      </record>
+      <record model="ir.message" id="not_file_mime_image">
+          <field name="text">"%(file_name)s" file mime is not an image (jpg, png or gif)</field>
+      </record>
+      <record model="ir.message" id="image_size">
+          <field name="text">Thumb "%(file_name)s" size is larger than "%(size)s"Kb</field>
+      </record>
+    </data>
+</tryton>

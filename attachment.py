@@ -6,6 +6,8 @@ from mimetypes import guess_type
 import slug
 from trytond.pool import Pool, PoolMeta
 from trytond.model import fields
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Attachment']
 
@@ -28,14 +30,6 @@ class Attachment(metaclass=PoolMeta):
     __name__ = 'ir.attachment'
     active = fields.Boolean('Active', select=True)
 
-    @classmethod
-    def __setup__(cls):
-        super(Attachment, cls).__setup__()
-        cls._error_messages.update({
-                'not_known_mimetype': ('The mime type of filename "%s" is not '
-                    'known. Add a valid extension to the filename.'),
-                })
-
     @staticmethod
     def default_active():
         return True
@@ -56,8 +50,8 @@ class Attachment(metaclass=PoolMeta):
                 continue
             filename = slugify(vals['name'])
             if not guess_type(filename)[0]:
-                cls.raise_user_error('not_known_mimetype',
-                    (filename,))
+                raise UserError(gettext('product_attachments.not_known_mimetype',
+                    filename=filename))
             vals['name'] = filename
 
             if 'resource' in vals and 'data' in vals:
@@ -91,8 +85,9 @@ class Attachment(metaclass=PoolMeta):
             if to_slugify and values.get('name'):
                 filename = slugify(values['name'])
                 if not guess_type(filename)[0]:
-                    cls.raise_user_error('not_known_mimetype',
-                        (filename,))
+                    raise UserError(gettext(
+                    'product_attachments.not_known_mimetype',
+                        filename=filename))
                 values['name'] = filename
             args.extend((attachments, values))
         return super(Attachment, cls).write(*args)

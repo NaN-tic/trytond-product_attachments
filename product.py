@@ -34,18 +34,6 @@ class Template(metaclass=PoolMeta):
     thumb_path = fields.Function(fields.Char('Thumb Path'), 'get_thumbpath')
 
     @classmethod
-    def __setup__(cls):
-        super(Template, cls).__setup__()
-        cls._error_messages.update({
-            'not_file_mime': ('Not know file mime "%(file_name)s"'),
-            'not_file_mime_image': (
-                    '"%(file_name)s" file mime is not an image '
-                    '(jpg, png or gif)'),
-            'image_size': (
-                    'Thumb "%(file_name)s" size is larger than "%(size)s"Kb'),
-        })
-
-    @classmethod
     def delete(cls, templates):
         pool = Pool()
         Attachment = pool.get('ir.attachment')
@@ -125,9 +113,9 @@ class Template(metaclass=PoolMeta):
 
             file_mime, _ = guess_type(file_name)
             if not file_mime:
-                cls.raise_user_error('not_file_mime', {
-                        'file_name': file_name,
-                        })
+                raise UserError(gettext('product_attachments.not_file_mime',
+                        file_name=file_name))
+
             if file_mime not in _IMAGE_TYPES:
                 # is not image, not create a thumb
                 continue
@@ -152,9 +140,9 @@ class Template(metaclass=PoolMeta):
             except:
                 if os.path.exists(filename):
                     os.remove(filename)
-                cls.raise_user_error('not_file_mime_image', {
-                        'file_name': file_name,
-                        })
+                raise UserError(gettext(
+                    'product_attachments.not_file_mime_image',
+                        file_name=file_name))
 
             width, height = im.size
             if width > height:
