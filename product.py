@@ -12,6 +12,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Template', 'Product']
 _IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
