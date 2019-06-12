@@ -43,7 +43,7 @@ class Template(metaclass=PoolMeta):
         super(Template, cls).delete(templates)
 
     def get_image(self, name):
-        '''Return a digest product image'''
+        '''Return a file_id product image'''
         if not self.attachments:
             return
 
@@ -51,21 +51,21 @@ class Template(metaclass=PoolMeta):
         db_name = Transaction().database.name
 
         for attach in self.attachments:
-            digest = attach.digest
-            if not digest:
+            file_id = attach.file_id
+            if not file_id:
                 continue
             image = '%s/%s/%s/%s/%s' % (
                 path,
                 db_name,
-                digest[:2],
-                digest[2:4:],
-                digest,
+                file_id[:2],
+                file_id[2:4:],
+                file_id,
                 )
             if not os.path.isfile(image):
                 return
             mimetype = magic.from_file(image, mime=True)
             if mimetype in _IMAGE_TYPES:
-                return digest
+                return file_id
         return
 
     def get_thumb(self, name):
@@ -184,7 +184,7 @@ class Product(metaclass=PoolMeta):
         super(Product, cls).delete(products)
 
     def get_image(self, name):
-        '''Return a digest product image'''
+        '''Return a file_id product image'''
         if not self.attachments:
             return self.template.get_image(name)
 
@@ -192,16 +192,16 @@ class Product(metaclass=PoolMeta):
         db_name = Transaction().database.name
 
         for attach in self.attachments:
-            digest = attach.digest
+            file_id = attach.file_id
             image = '%s/%s/%s/%s/%s' % (
                 path,
                 db_name,
-                digest[:2],
-                digest[2:4:],
-                digest,
+                file_id[:2],
+                file_id[2:4:],
+                file_id,
                 )
 
             mimetype = magic.from_file(image, mime=True)
             if mimetype in _IMAGE_TYPES:
-                return digest
+                return file_id
         return
