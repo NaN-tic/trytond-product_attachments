@@ -5,7 +5,7 @@ from mimetypes import guess_type
 
 import slug
 from trytond.pool import Pool, PoolMeta
-from trytond.model import fields
+from trytond.model import DeactivableMixin, fields
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 
@@ -26,13 +26,8 @@ def slugify(value):
         return value
 
 
-class Attachment(metaclass=PoolMeta):
+class Attachment(DeactivableMixin, metaclass=PoolMeta):
     __name__ = 'ir.attachment'
-    active = fields.Boolean('Active', select=True)
-
-    @staticmethod
-    def default_active():
-        return True
 
     @classmethod
     def _get_models_check_mime_type(cls):
