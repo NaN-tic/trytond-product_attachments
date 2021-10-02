@@ -5,11 +5,9 @@ from mimetypes import guess_type
 
 import slug
 from trytond.pool import Pool, PoolMeta
-from trytond.model import DeactivableMixin, fields
+from trytond.model import DeactivableMixin
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
-
-__all__ = ['Attachment']
 
 
 def slugify(value):
