@@ -27,8 +27,8 @@ class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
-    image = fields.Function(fields.Char('Image'),
-        'get_image')
+    image_file_id = fields.Function(fields.Char('Image File ID'),
+        'get_image_file_id')
     thumb = fields.Function(fields.Binary('Thumb', filename='thumb_filename',
         help='Thumbnail Product Image'), 'get_thumb', setter='set_thumb')
     thumb_filename = fields.Char('File Name',
@@ -44,7 +44,7 @@ class Template(metaclass=PoolMeta):
         Attachment.delete(attachments)
         super(Template, cls).delete(templates)
 
-    def get_image(self, name):
+    def get_image_file_id(self, name):
         '''Return a file_id product image'''
         if not self.attachments:
             return
