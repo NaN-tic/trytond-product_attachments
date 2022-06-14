@@ -11,6 +11,7 @@ def register():
     Pool.register(
         configuration.Configuration,
         attachment.Attachment,
+        product.Category,
         product.Template,
         product.Product,
         module='product_attachments', type_='model')
