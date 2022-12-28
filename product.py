@@ -173,8 +173,8 @@ class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
         'Attachments', states=STATES, depends=DEPENDS)
-    image = fields.Function(fields.Char('Image'),
-        'get_image')
+    image_file_id = fields.Function(fields.Char('Image File ID'),
+        'get_image_file_id')
 
     @classmethod
     def delete(cls, products):
@@ -185,10 +185,10 @@ class Product(metaclass=PoolMeta):
         Attachment.delete(attachments)
         super(Product, cls).delete(products)
 
-    def get_image(self, name):
+    def get_image_file_id(self, name):
         '''Return a file_id product image'''
         if not self.attachments:
-            return self.template.get_image(name)
+            return self.template.get_image_file_id(name)
 
         path = config.get('database', 'path')
         db_name = Transaction().database.name
