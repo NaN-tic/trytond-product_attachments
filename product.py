@@ -161,7 +161,7 @@ class Template(metaclass=PoolMeta):
                 lower = width + upper
 
             im = im.crop((left, upper, right, lower))
-            im.thumbnail(thumb_size, Image.ANTIALIAS)
+            im.thumbnail(thumb_size, Image.LANCZOS)
             im.save(filename)
 
             cls.write([template], {
