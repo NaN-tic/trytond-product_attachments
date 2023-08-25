@@ -36,8 +36,9 @@ class Attachment(DeactivableMixin, metaclass=PoolMeta):
     @classmethod
     def create(cls, vlist):
         for vals in vlist:
-            if vals['type'] == 'link':
+            if vals.get('type') == 'link':
                 continue
+
             model_name, record_id = vals['resource'].split(',', 1)
             if model_name not in cls._get_models_check_mime_type():
                 continue
