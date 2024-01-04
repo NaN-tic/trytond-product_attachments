@@ -35,6 +35,7 @@ class Attachment(DeactivableMixin, metaclass=PoolMeta):
 
     @classmethod
     def create(cls, vlist):
+        vlist = [x.copy() for x in vlist]
         for vals in vlist:
             if vals.get('type') == 'link':
                 continue
