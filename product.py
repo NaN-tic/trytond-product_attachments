@@ -20,13 +20,12 @@ _IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 STATES = {
     'readonly': ~Eval('active', True),
     }
-DEPENDS = ['active']
 
 
 class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
-        'Attachments', states=STATES, depends=DEPENDS)
+        'Attachments', states=STATES)
     image_file_id = fields.Function(fields.Char('Image File ID'),
         'get_image_file_id')
     thumb = fields.Function(fields.Binary('Thumb', filename='thumb_filename',
@@ -172,7 +171,7 @@ class Template(metaclass=PoolMeta):
 class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
-        'Attachments', states=STATES, depends=DEPENDS)
+        'Attachments', states=STATES)
     image_file_id = fields.Function(fields.Char('Image File ID'),
         'get_image_file_id')
 
