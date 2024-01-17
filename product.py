@@ -15,12 +15,17 @@ from trytond.config import config
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 
-__all__ = ['Template', 'Product']
 _IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 STATES = {
     'readonly': ~Eval('active', True),
     }
 DEPENDS = ['active']
+
+
+class Category(metaclass=PoolMeta):
+    __name__ = 'product.category'
+    attachments = fields.One2Many('ir.attachment', 'resource',
+        'Attachments')
 
 
 class Template(metaclass=PoolMeta):
