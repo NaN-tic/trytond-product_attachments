@@ -9,23 +9,18 @@ from mimetypes import guess_type
 from PIL import Image
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.config import config
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 
-__all__ = ['Template', 'Product']
 _IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
-STATES = {
-    'readonly': ~Eval('active', True),
-    }
 
 
 class Template(metaclass=PoolMeta):
     __name__ = 'product.template'
     attachments = fields.One2Many('ir.attachment', 'resource',
-        'Attachments', states=STATES)
+        'Attachments')
     image_file_id = fields.Function(fields.Char('Image File ID'),
         'get_image_file_id')
     thumb = fields.Function(fields.Binary('Thumb', filename='thumb_filename',
@@ -171,7 +166,7 @@ class Template(metaclass=PoolMeta):
 class Product(metaclass=PoolMeta):
     __name__ = 'product.product'
     attachments = fields.One2Many('ir.attachment', 'resource',
-        'Attachments', states=STATES)
+        'Attachments')
     image_file_id = fields.Function(fields.Char('Image File ID'),
         'get_image_file_id')
 
