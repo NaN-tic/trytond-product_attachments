@@ -1,26 +1,6 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
-
-msgctxt "error:ir.attachment:"
-msgid ""
-"The mime type of filename \"%s\" is not known. Add a valid extension to the "
-"filename."
-msgstr ""
-"El tipus mime del nom del fitxer \"% s\" és desconegut. Afegiu una extensió "
-"vàlida al nom del fitxer."
-
-msgctxt "error:product.template:"
-msgid "\"%(file_name)s\" file mime is not an image (jpg, png or gif)"
-msgstr "El tipus de fitcher \"%(file_name)s\" no és una imatge (jpg, png o gif)"
-
-msgctxt "error:product.template:"
-msgid "Not know file mime \"%(file_name)s\""
-msgstr "No es coneix el tipus de fitxer \"%(file_name)s\""
-
-msgctxt "error:product.template:"
-msgid "Thumb \"%(file_name)s\" size is larger than \"%(size)s\"Kb"
-msgstr "El tamany de la miniatura \"%(file_name)s\" és mes gran que \"%(size)s\"Kb"
 
 msgctxt "field:ir.attachment,active:"
 msgid "Active"
