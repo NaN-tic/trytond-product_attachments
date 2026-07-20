@@ -10,7 +10,7 @@ from PIL import Image
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
-from trytond.config import config
+import trytond.config as config
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 
